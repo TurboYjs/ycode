@@ -144,11 +144,11 @@ export const Editor: FC<{
         </header>
       )}
       <div className={style.main} ref={ref} />
-      <button>Compile</button>
-      <p>Output</p>
-      <div>
-        {output}
-      </div>
+      {/*<button>Compile</button>*/}
+      {/*<p>Output</p>*/}
+      {/*<div>*/}
+      {/*  {output}*/}
+      {/*</div>*/}
     </div>
   );
 };
