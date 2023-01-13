@@ -84,6 +84,7 @@ export const useMonaco = () => {
       const ed = mon.editor.create(ref.current!, {
         value: '',
         wordWrap: 'on',
+        language: 'typescript'
       });
 
       setMon(mon);

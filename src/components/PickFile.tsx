@@ -36,7 +36,6 @@ const ChooseFile: FC<Props> = ({ onFile }) => {
   return (
     <main className={styles.container}>
       <header>
-        <h1 className={styles.title}>yCode</h1>
         <p>Edit local files with remote people</p>
       </header>
 
@@ -53,12 +52,6 @@ const ChooseFile: FC<Props> = ({ onFile }) => {
           </span>
         )}
       </p>
-
-      <footer>
-        <p>
-          <a href="https://github.com/benfoxall/ycode">benfoxall/ycode</a>
-        </p>
-      </footer>
     </main>
   );
 };

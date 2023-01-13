@@ -20,7 +20,12 @@
   flex: 1;
   overflow: hidden;
 }
+.compile-btn {
 
+}
+.output {
+
+}
 .saveHint {
   color: #fc0;
 }

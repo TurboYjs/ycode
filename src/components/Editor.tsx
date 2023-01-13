@@ -122,7 +122,8 @@ export const Editor: FC<{
       };
     }
   }, [copied]);
-
+  // set output
+  const [output, setOutput] = useState('');
   return (
     <div className={style.container} onKeyDown={down}>
       {yconfig.initiator && (
@@ -143,6 +144,11 @@ export const Editor: FC<{
         </header>
       )}
       <div className={style.main} ref={ref} />
+      <button>Compile</button>
+      <p>Output</p>
+      <div>
+        {output}
+      </div>
     </div>
   );
 };
