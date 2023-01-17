@@ -4,7 +4,6 @@ import { useRef, useState, RefObject, useEffect } from 'react';
 import type TMonaco from 'monaco-editor';
 
 import { useMediaQuery } from './hooks.js';
-import React from 'react'
 
 // https://cdnjs.com/libraries/monaco-editor
 
@@ -85,7 +84,6 @@ export const useMonaco = () => {
       const ed = mon.editor.create(ref.current!, {
         value: '',
         wordWrap: 'on',
-        language: 'typescript'
       });
 
       setMon(mon);

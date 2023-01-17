@@ -5,7 +5,7 @@ import React, {
   useEffect,
   FC,
   KeyboardEventHandler,
-  MouseEventHandler, useCallback,
+  MouseEventHandler,
 } from 'react';
 
 import type * as Y from 'yjs';
@@ -16,8 +16,7 @@ import { MonacoBinding, _SET_MONACO } from '../ext/y-monaco.js';
 import yconfig from '../yconfig';
 
 import { useMonaco } from './monaco.jsx';
-import Operator from "~components/Operator";
-
+import Operator from '~components/Operator'
 export const Editor: FC<{
   // name?: string;
   onChange: (s: string) => void;
@@ -123,11 +122,6 @@ export const Editor: FC<{
     }
   }, [copied]);
 
-  const getEditor = useCallback(() => {
-    return editor;
-  }, [editor]);
-  // set output
-  const [output, setOutput] = useState('');
   return (
     <div className={style.container} onKeyDown={down}>
       {yconfig.initiator && (
@@ -148,7 +142,7 @@ export const Editor: FC<{
         </header>
       )}
       <div className={style.main} ref={ref} />
-      <Operator getEditor={getEditor} />
+      <Operator getEditor={()=> editor}/>
     </div>
   );
 };

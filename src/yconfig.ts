@@ -3,31 +3,31 @@ import { WebrtcProvider } from 'y-webrtc';
 
 // don't allow hot reloading of this file
 if (import.meta.hot) {
-  import.meta.hot.decline();
+    import.meta.hot.decline();
 }
 
 interface YI {
-  doc: Y.Doc;
-  provider: WebrtcProvider;
-  room: string;
-  initiator: boolean;
+    doc: Y.Doc;
+    provider: WebrtcProvider;
+    room: string;
+    initiator: boolean;
 }
 
 const key = ':room:';
 
 let initiator = true;
 let room =
-  sessionStorage.getItem(key) ||
-  [
-    Math.random().toString(32).slice(2),
-    Math.random().toString(32).slice(2),
-  ].join('~');
+    sessionStorage.getItem(key) ||
+    [
+        Math.random().toString(32).slice(2),
+        Math.random().toString(32).slice(2),
+    ].join('~');
 
 sessionStorage.setItem(key, room);
 
 if (location.search) {
-  initiator = false;
-  room = location.search.slice(1);
+    initiator = false;
+    room = location.search.slice(1);
 }
 
 const doc = new Y.Doc();

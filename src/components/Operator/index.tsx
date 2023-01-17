@@ -10,7 +10,6 @@ import styles from './index.module.css';
 import { editor } from 'monaco-editor';
 import { observer } from 'mobx-react-lite';
 import {parseConsoleOutput} from "~utils/helper";
-import {EditorConfig} from "~store/config/editor";
 enum DisplayType {
   input,
   output,
@@ -24,8 +23,6 @@ interface Props {
 
 function Index(props: Props) {
   const { getEditor } = props;
-  const [editorConfig] = useState(() => EditorConfig);
-  const { autoSaveDelay, codeType, outputType, setOutputType } = editorConfig;
   const inputRef = useRef('');
   const [display, setDisplay] = useState(DisplayType.output);
   const { data, run, loading } = useRequest(runCode, { manual: true });
@@ -37,21 +34,22 @@ function Index(props: Props) {
     } else {
       output = data?.output || '';
     }
-    return parseConsoleOutput(output, outputType);
-  }, [data, outputType]);
+    return parseConsoleOutput(output);
+  }, [data]);
 
 
   const [timesPrevent, setTimesPrevent] = useState(false);
 
   const handleRunCode = async () => {
     if (timesPrevent) {
-      toast({ message: '您点击太快啦! 请稍后重试!', type: 'info' });
+      toast({ message: 'You click too fast! Please try it later!', type: 'info' });
       return;
     }
 
     if (getEditor()) {
       const code = getEditor()?.getValue() || '';
-      run({ code: encodeURI(code), type: codeType, stdin: inputRef.current });
+      // @ts-expect-error
+      run({ code: encodeURI(code), type: getEditor()?.getModel()?.getLanguageIdentifier()?.language, stdin: inputRef.current });
       setTimesPrevent(true);
       setTimeout(() => {
         setTimesPrevent(false);
