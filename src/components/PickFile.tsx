@@ -11,6 +11,7 @@ import styles from './PickFile.module.css';
 interface Props {
   file?: FileSystemFileHandle;
   onFile: (handle: FileSystemFileHandle) => void;
+  children?: any
 }
 
 const IsDragging = createContext(false);

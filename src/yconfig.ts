@@ -34,7 +34,6 @@ const doc = new Y.Doc();
 
 const [name, password] = room.split('~');
 
-// @ts-expect-error
 // WebrtcProvider expects full Opts object, though it seems that Partial<Opts> works okay
 const provider = new WebrtcProvider(name, doc, { password });
 

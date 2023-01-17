@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
 import App from './App';
+import 'xterm/css/xterm.css'
 import './index.css';
-
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root'),
 );
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.

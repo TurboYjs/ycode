@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./config/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: 'Asia/Hong_Kong'
+      MYSQL_USER: runcode
+      MYSQL_PASSWORD: runcode
+      MYSQL_DATABASE: runcode
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/data/db
+
+  redis:
+    image: redis:latest
+    ports:
+      - "16379:6379"
+    volumes:
+      - ./data/redis:/data

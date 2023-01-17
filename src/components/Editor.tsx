@@ -5,18 +5,18 @@ import React, {
   useEffect,
   FC,
   KeyboardEventHandler,
-  MouseEventHandler,
+  MouseEventHandler, useCallback,
 } from 'react';
 
 import type * as Y from 'yjs';
 import style from './monaco.module.css';
 
-// @ts-expect-error
 import { MonacoBinding, _SET_MONACO } from '../ext/y-monaco.js';
 
 import yconfig from '../yconfig';
 
 import { useMonaco } from './monaco.jsx';
+import Operator from "~components/Operator";
 
 export const Editor: FC<{
   // name?: string;
@@ -33,7 +33,7 @@ export const Editor: FC<{
   useEffect(() => {
     const name = yconfig.doc.getText('monaco:name');
 
-    let val = name;
+    let val = name.toJSON();
 
     const callback = (f: Y.YTextEvent) => {
       if (f.adds.length) {
@@ -122,6 +122,10 @@ export const Editor: FC<{
       };
     }
   }, [copied]);
+
+  const getEditor = useCallback(() => {
+    return editor;
+  }, [editor]);
   // set output
   const [output, setOutput] = useState('');
   return (
@@ -144,11 +148,7 @@ export const Editor: FC<{
         </header>
       )}
       <div className={style.main} ref={ref} />
-      {/*<button>Compile</button>*/}
-      {/*<p>Output</p>*/}
-      {/*<div>*/}
-      {/*  {output}*/}
-      {/*</div>*/}
+      <Operator getEditor={getEditor} />
     </div>
   );
 };

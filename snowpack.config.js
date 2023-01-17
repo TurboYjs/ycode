@@ -8,6 +8,7 @@ module.exports = {
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
     ['@snowpack/plugin-webpack', { htmlMinifierOptions: false }],
+    '@snowpack/plugin-postcss',
   ],
   install: [
     /* ... */
@@ -17,6 +18,7 @@ module.exports = {
   },
   devOptions: {
     /* ... */
+    tailwindConfig: './tailwind.config.js',
   },
   buildOptions: {
     baseUrl: '/ycode/',
@@ -26,5 +28,14 @@ module.exports = {
   },
   alias: {
     /* ... */
+    '~': './src',
+    '~components': './src/components',
+    '~store': './src/store',
+    '~utils': './src/utils',
+    '~constant': './src/constant',
+    '~hooks': './src/hooks',
+    '~pages': './src/pages',
+    '~services':  './src/services',
+    '~ext':  './src/ext',
   },
 };
