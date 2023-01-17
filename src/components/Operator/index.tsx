@@ -73,7 +73,6 @@ function Index(props: Props) {
         className={'w-full h-full mt-1'}
         style={{
           display: display === DisplayType.input ? 'block' : 'none',
-          height: 231,
         }}
         placeholder="stdin..."
         border

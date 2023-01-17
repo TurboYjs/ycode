@@ -1,9 +1,14 @@
 module.exports = {
-  plugins: {
-    autoprefixer: {},
-    'postcss-pxtorem': {
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+    require('postcss-pxtorem',  {
       rootValue: 16,
       propList: ['*'],
-    },
-  },
+    }),
+    require('postcss-import'),
+    require('postcss-nested')({
+      bubble: ['screen'],
+    }),
+  ]
 };
