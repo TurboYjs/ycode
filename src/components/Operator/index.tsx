@@ -10,6 +10,7 @@ import styles from './index.module.css';
 import { editor } from 'monaco-editor';
 import { observer } from 'mobx-react-lite';
 import {parseConsoleOutput} from "~utils/helper";
+import {CodeType} from "~utils/codeType";
 enum DisplayType {
   input,
   output,
@@ -48,8 +49,7 @@ function Index(props: Props) {
 
     if (getEditor()) {
       const code = getEditor()?.getValue() || '';
-      // @ts-expect-error
-      run({ code: encodeURI(code), type: getEditor()?.getModel()?.getLanguageIdentifier()?.language, stdin: inputRef.current });
+      run({ code: encodeURI(code), type: getEditor()?.getModel?.()?.getLanguageId?.() as CodeType, stdin: inputRef.current });
       setTimesPrevent(true);
       setTimeout(() => {
         setTimesPrevent(false);
