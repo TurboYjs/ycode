@@ -12,3 +12,4 @@ node_modules
 /public/min/
 /public/min-maps/
 /.env.local
+/dist/
