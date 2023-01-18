@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "y-webrtc-signaling & vite --mode dev --host",
+    "dev": "kill-port 4444 && y-webrtc-signaling & vite --mode dev --host",
     "prod": "vite --mode production",
     "build": "tsc && pnpm build:tailwind && vite build",
     "preview": "vite preview",
@@ -78,6 +78,7 @@
     "tailwindcss": "3.2.4",
     "typescript": "^4.0.0",
     "y-protocols": "^1.0.1",
-    "copy-files-from-to": "3.6.0"
+    "copy-files-from-to": "3.6.0",
+    "kill-port": "2.0.1"
   }
 }

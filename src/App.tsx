@@ -40,7 +40,7 @@ function App({}: AppProps) {
     }, [fileHandle]);
 
     useEffect(() => {
-        document.title = fileHandle ? fileHandle.name : 'yCode';
+        document.title = fileHandle ? fileHandle.name : 'collaborate';
     }, [fileHandle]);
     const onStart = ()=> {
         window.location.href = `${location.origin}?room=${yconfig.room}&language=${language}`
