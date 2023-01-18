@@ -3,12 +3,12 @@
 import { useRef, useState, RefObject, useEffect } from 'react';
 import type TMonaco from 'monaco-editor';
 import { useMediaQuery } from './hooks.js';
+import config from "~/yconfig";
 
 // https://cdnjs.com/libraries/monaco-editor
-const {BASE_URL} = import.meta.env
 const baseUrl =
   // 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min';
-  `${location.origin}${BASE_URL}min`
+  `${config.urlPrefix}min`
 
 const integrity =
   'sha512-dx6A3eMO/vvLembE8xNGc3RKUytoTIX3rNO5uMEhzhqnXYx1X5XYmjfZP7vxYv7x3gBhdj7Pgys8DUjdbDaLAA==';

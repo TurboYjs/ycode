@@ -34,7 +34,7 @@ function App({}: AppProps) {
                     // hack?, clear out contents
                     if (namedoc.toJSON()) namedoc.delete(0, 1000000);
                     namedoc.insert(0, fileHandle.name);
-                    history.pushState('', '', `${location.origin}?room=${yconfig.room}`);
+                    history.pushState('', '', `${yconfig.urlPrefix}?room=${yconfig.room}`);
                 });
         }
     }, [fileHandle]);
@@ -43,7 +43,7 @@ function App({}: AppProps) {
         document.title = fileHandle ? fileHandle.name : 'collaborate';
     }, [fileHandle]);
     const onStart = ()=> {
-        window.location.href = `${location.origin}?room=${yconfig.room}&language=${language}`
+        window.location.href = `${yconfig.urlPrefix}?room=${yconfig.room}&language=${language}`
     }
     const [language, setLanguage] = useState('typescript')
 
