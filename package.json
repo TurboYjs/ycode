@@ -2,10 +2,8 @@
   "scripts": {
     "dev": "kill-port 4444 && y-webrtc-signaling & vite --mode dev --host",
     "prod": "vite --mode production",
-    "build": "tsc && pnpm build:tailwind && vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
-    "build:tailwind": "npx tailwindcss build src/tailwind.css -o src/tailwind.output.css",
-    "build:tailwind:watch": "npx tailwindcss -i src/tailwind.css -o src/tailwind.output.css --watch",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "copy-files-from-to",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
