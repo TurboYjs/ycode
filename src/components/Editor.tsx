@@ -51,8 +51,9 @@ export const Editor: FC<{
   }, []);
 
   useEffect(() => {
-    if (editor && mon && name) {
-      const model = mon.editor.createModel('_', undefined, mon.Uri.file(name));
+    const language = yconfig.language
+    if (editor && mon) {
+      const model = mon.editor.createModel('_', language??undefined, name ? mon.Uri.file(name): undefined);
 
       let first = true;
       model.onDidChangeContent(() => {
@@ -101,7 +102,7 @@ export const Editor: FC<{
   const [copied, setCopied] = useState(false);
   const clip: MouseEventHandler<HTMLAnchorElement> = async (e) => {
     e.preventDefault();
-    const { href } = e.currentTarget;
+    const href = location.href
 
     try {
       await navigator.clipboard.writeText(href);
@@ -136,10 +137,20 @@ export const Editor: FC<{
             </span>
           )}
 
-          <a href={'?' + yconfig.room} target="_blank" onClick={clip}>
+          <a onClick={clip} className="cursor-pointer">
             {copied ? 'link copied!' : 'share ↗︎'}
           </a>
         </header>
+      )}
+      {!yconfig.initiator && (
+          <header className={style.header}>
+          <span>
+            {name} {changed && '*'}
+          </span>
+            <a onClick={clip} className="cursor-pointer">
+              {copied ? 'link copied!' : 'share ↗︎'}
+            </a>
+          </header>
       )}
       <div className={style.main} ref={ref} />
       <Operator getEditor={()=> editor}/>

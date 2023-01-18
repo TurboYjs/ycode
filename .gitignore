@@ -8,3 +8,7 @@ node_modules
 /.idea/ycode.iml
 /pnpm-lock.yaml
 /.env
+/src/tailwind.output.css
+/public/min/
+/public/min-maps/
+/.env.local

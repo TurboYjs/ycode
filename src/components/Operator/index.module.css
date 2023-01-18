@@ -1,13 +1,5 @@
 .container {
   width: 100%;
-
-  @media (min-width: 640px) {
-    width: calc(100% - 20px);
-  }
-
-  @media (min-width: 1280px) {
-    width: 1000px;
-  }
   .operator {
     width: 100%;
 
@@ -16,9 +8,6 @@
     align-items: center;
     justify-content: flex-end;
     flex-wrap: wrap;
-    @media (max-width: 640px) {
-      padding-left: 120px;
-    }
     button {
       margin-top: 10px;
     }

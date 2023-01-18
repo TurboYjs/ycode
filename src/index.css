@@ -47,3 +47,7 @@ a:hover {
   left: -4px;
   top: -5px;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;

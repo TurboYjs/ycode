@@ -98,7 +98,9 @@ function Index(props: Props) {
       </div>
     );
   };
-
+  const handleExit = ()=> {
+    window.location.href = location.origin
+  }
   return (
     <div className={styles.container}>
       <div className={classnames(styles.operator, 'pt-2')}>
@@ -109,6 +111,13 @@ function Index(props: Props) {
           onClick={handleRunCode}
         >
           run
+        </Button>
+        <Button
+            type="secondary"
+            className="mr-2"
+            onClick={handleExit}
+        >
+          exit
         </Button>
       </div>
       <div className={classnames(styles.display)}>

@@ -6,8 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-import styles from './PickFile.module.css';
-
 interface Props {
   file?: FileSystemFileHandle;
   onFile: (handle: FileSystemFileHandle) => void;
@@ -35,32 +33,21 @@ const ChooseFile: FC<Props> = ({ onFile }) => {
   };
 
   return (
-    <main className={styles.container}>
-      <header>
-        <h1 className={styles.title}>yCode</h1>
-        <p>Edit local files with remote people</p>
-      </header>
-
-      <p>
+      <p className="text-center font-bold text-xl">
         {supported ? (
-          <a href="#" onClick={choose}>
-            {dragging ? 'Drop' : 'Select'} a file to get started
-          </a>
+            <span className="">
+              <a href="#" onClick={choose}>
+                Drop or Select a file to get started
+              </a>
+            </span>
         ) : (
-          <span className={styles.info}>
+            <span className="text-warning">
             <a href="https://caniuse.com/native-filesystem-api">
               File System Access isn’t supported by this browser yet 😢
             </a>
           </span>
         )}
       </p>
-
-      <footer>
-        <p>
-          <a href="https://github.com/benfoxall/ycode">benfoxall/ycode</a>
-        </p>
-      </footer>
-    </main>
   );
 };
 

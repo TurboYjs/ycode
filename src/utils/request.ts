@@ -1,10 +1,10 @@
 import Axios from 'axios';
 import { toast } from '~components/Toast';
 
-const { SNOWPACK_PUBLIC_API_URL } = import.meta.env;
+const { VITE_PUBLIC_API_URL } = import.meta.env;
 
 const instance = Axios.create({
-  baseURL: SNOWPACK_PUBLIC_API_URL,
+  baseURL: VITE_PUBLIC_API_URL,
 });
 
 instance.interceptors.request.use(

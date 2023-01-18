@@ -2,13 +2,13 @@
 
 import { useRef, useState, RefObject, useEffect } from 'react';
 import type TMonaco from 'monaco-editor';
-
 import { useMediaQuery } from './hooks.js';
 
 // https://cdnjs.com/libraries/monaco-editor
-
+const {BASE_URL} = import.meta.env
 const baseUrl =
-  'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min';
+  // 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min';
+  `${location.origin}${BASE_URL}min`
 
 const integrity =
   'sha512-dx6A3eMO/vvLembE8xNGc3RKUytoTIX3rNO5uMEhzhqnXYx1X5XYmjfZP7vxYv7x3gBhdj7Pgys8DUjdbDaLAA==';
@@ -30,8 +30,8 @@ const monacoPromised = (async () => {
   */
   if (!win.require) {// hmr
     const scr = document.createElement('script');
-    scr.setAttribute('src', `${baseUrl}/vs/loader.min.js`);
-    scr.setAttribute('integrity', integrity);
+    scr.setAttribute('src', `${baseUrl}/vs/loader.js`);
+    // scr.setAttribute('integrity', integrity);
     scr.setAttribute('crossorigin', 'anonymous');
 
     const load = new Promise((res) => scr.addEventListener('load', res));
@@ -52,7 +52,7 @@ const monacoPromised = (async () => {
         [
           `
         self.MonacoEnvironment = { baseUrl: '${baseUrl}' };
-        importScripts('${baseUrl}/vs/base/worker/workerMain.min.js');
+        importScripts('${baseUrl}/vs/base/worker/workerMain.js');
         `,
         ],
         { type: 'text/javascript' },
@@ -90,7 +90,6 @@ export const useMonaco = () => {
       setEditor(ed);
     });
   }, []);
-
   useEffect(() => {
     if (editor) {
       const resize = () => {
