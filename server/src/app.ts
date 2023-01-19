@@ -5,7 +5,6 @@ import { CodeController } from './controller/code';
 import { StatController } from './controller/stat';
 import { QuestionController } from './controller/question';
 import ws from 'ws'
-import http from 'http'
 import * as map from 'lib0/map'
 // @ts-ignore
 // eslint-disable-next-line no-extend-native
@@ -30,7 +29,7 @@ process.on('uncaughtException', (err) => {
   console.log('uncaughtException', err);
 });
 
-app.listen(39005, () => {
+const server = app.listen(39005, () => {
   logger.info('应用启动成功!');
 });
 
@@ -42,7 +41,7 @@ const wsReadyStateClosed = 3 // eslint-disable-line
 const pingTimeout = 30000
 
 // @ts-ignore
-const wss = new ws.Server({ server: app })
+const wss = new ws.Server({ server })
 
 /**
  * Map froms topic-name to set of subscribed clients.
