@@ -8,7 +8,7 @@ import config from "~/yconfig";
 // https://cdnjs.com/libraries/monaco-editor
 const baseUrl =
   // 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min';
-  `${config.urlPrefix}/min`
+  `${config.urlPrefix.replace('\/index\.html', '')}/min`
 
 const integrity =
   'sha512-dx6A3eMO/vvLembE8xNGc3RKUytoTIX3rNO5uMEhzhqnXYx1X5XYmjfZP7vxYv7x3gBhdj7Pgys8DUjdbDaLAA==';
