@@ -3,6 +3,7 @@
     "dev": "vite --mode dev --host",
     "prod": "vite --mode production",
     "build": "tsc && vite build --mode production",
+    "build:github": "tsc && vite build --mode production --base '\/ycode\/'",
     "preview": "vite preview",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "copy-files-from-to",
