@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "kill-port 4444 && y-webrtc-signaling & vite --mode dev --host",
+    "dev": "vite --mode dev --host",
     "prod": "vite --mode production",
     "build": "tsc && vite build --mode production",
     "preview": "vite preview",
