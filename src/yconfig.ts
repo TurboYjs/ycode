@@ -33,8 +33,6 @@ const [name, password] = room.split('~');
 
 // WebrtcProvider expects full Opts object, though it seems that Partial<Opts> works okay
 const provider = new WebrtcProvider(name, doc, { password, signaling: [VITE_PUBLIC_WEBRTC_URL] });
-const {BASE_URL} = import.meta.env
-
-const config: YI = { room, doc, provider, initiator, language, urlPrefix: `${location.origin}${BASE_URL}` };
+const config: YI = { room, doc, provider, initiator, language, urlPrefix: `${location.origin}${location.pathname}` };
 
 export default config;

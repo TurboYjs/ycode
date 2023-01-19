@@ -4,7 +4,7 @@
     "prod": "vite --mode production",
     "build": "tsc && vite build --mode production",
     "build:github": "tsc && vite build --mode production --base '\/ycode\/'",
-    "build:wuli": "tsc && rimraf public/min-maps/ && vite build --mode production --base '\/gc\/WkBgNR\/index.html\/' && tar -cvf dist.zip dist/*",
+    "build:wuli": "tsc && rimraf public/min-maps/ && vite build --mode production --base '\/gc\/JmngEL\/' && zip -r dist.zip dist",
     "preview": "vite preview",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "copy-files-from-to",
