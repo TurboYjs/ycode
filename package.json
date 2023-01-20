@@ -43,7 +43,6 @@
     "react-router-dom": "^6.4.2",
     "react-spinners": "^0.13.6",
     "react-use": "^17.4.0",
-    "window-crypto": "^1.1.0",
     "y-webrtc": "^10.1.6",
     "yjs": "^13.4.2"
   },
