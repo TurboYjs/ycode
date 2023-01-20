@@ -32,18 +32,19 @@
     "koa": "2.13.4",
     "koa-bodyparser": "4.3.0",
     "koa-router": "12.0.0",
+    "lib0": "0.2.60",
     "lodash": "4.17.21",
     "log4js": "6.7.0",
     "multer": "1.4.5-lts.1",
     "prisma": "4.5.0",
     "reflect-metadata": "0.1.13",
     "routing-controllers": "0.9.0",
+    "socket.io": "^4.5.4",
     "tar-stream": "2.2.0",
     "ts-node": "10.9.1",
     "typedi": "0.10.0",
     "ua-parser-js": "1.0.32",
-    "ws": "8.12.0",
-    "lib0": "0.2.60"
+    "ws": "8.12.0"
   },
   "devDependencies": {
     "@types/dockerode": "3.3.10",
@@ -55,6 +56,7 @@
     "@types/node": "18.8.4",
     "@types/tar-stream": "2.2.2",
     "@types/ua-parser-js": "0.7.36",
+    "@types/ws": "8.5.4",
     "@typescript-eslint/eslint-plugin": "5.0.0",
     "@typescript-eslint/parser": "5.0.0",
     "eslint": "8.0.1",
@@ -67,7 +69,6 @@
     "pm2": "5.2.2",
     "prettier": "2.7.1",
     "typescript": "*",
-    "zx": "7.1.1",
-    "@types/ws": "8.5.4"
+    "zx": "7.1.1"
   }
 }

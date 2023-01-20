@@ -6,6 +6,7 @@ import { StatController } from './controller/stat';
 import { QuestionController } from './controller/question';
 import ws from 'ws'
 import * as map from 'lib0/map'
+const socketService = require('./service/socket.js');
 // @ts-ignore
 // eslint-disable-next-line no-extend-native
 BigInt.prototype.toJSON = function () {
@@ -39,7 +40,7 @@ const wsReadyStateClosing = 2 // eslint-disable-line
 const wsReadyStateClosed = 3 // eslint-disable-line
 
 const pingTimeout = 30000
-
+socketService(server);
 // @ts-ignore
 const wss = new ws.Server({ server })
 
