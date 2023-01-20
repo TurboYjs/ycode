@@ -13,6 +13,7 @@ BigInt.prototype.toJSON = function () {
 };
 
 const app = createKoaServer({
+  routePrefix: '/api',
   cors: true,
   controllers: [CodeController, StatController, QuestionController],
 });
