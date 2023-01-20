@@ -55,7 +55,7 @@ jobs:
           SERVER_DESTINATION: /www/project/runcodeserver/ # 部署到目标文件夹
 
       - name: Restart server # 第三步，重启服务
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }} # 下面三个配置与上一步类似
           username: ${{ secrets.SSH_USER }}
@@ -63,7 +63,6 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
-            exec bash
             cd /www/project/runcodeserver/server
             pnpm install 
             pnpm build:docker
