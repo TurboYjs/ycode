@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Server
 
 # Controls when the action will run.
 on:
@@ -61,12 +61,14 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }} # SSH端口
           key: ${{ secrets.DEPLOY_KEY }}
+          script: whoami
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
-          script: |
-            cd /www/project/runcodeserver/server
-            pnpm install 
-            pnpm build:docker
-            pnpm build
-            pnpm kill
-            pnpm run deploy
-            nginx -s reload
+#          script: |
+#            cd /www/project/runcodeserver/server
+#            pnpm install
+#            pnpm build:docker
+#            pnpm build
+#            pnpm kill
+#            pnpm run deploy
+#            nginx -s reload
+
