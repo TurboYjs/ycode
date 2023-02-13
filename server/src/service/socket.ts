@@ -1,7 +1,7 @@
-const { Server } = require('socket.io');
-const { languages } = require('./languages');
+import { Server } from 'socket.io'
+import { languages } from './languages'
 
-const socketService = (httpServer) => {
+export const socketService = (httpServer: any) => {
   const io = new Server(httpServer, {
     cors: {
       origin: process.env.CLIENT_URL,
@@ -13,15 +13,15 @@ const socketService = (httpServer) => {
   const userInfoMap = new Map();
   const languageToRoom = new Map();
   // On user connection
-  io.on('connection', (socket) => {
-    socket.on('join-room', (userInfo) => {
+  io.on('connection', (socket: any) => {
+    socket.on('join-room', (userInfo: any) => {
       const { roomId } = userInfo;
-      socketToRoom[socket.id] = roomId;
-      userInfoMap[socket.id] = userInfo;
+      socketToRoom.set(socket.id, roomId);
+      userInfoMap.set(socket.id, userInfo);
 
       if (!userInfoMap.has(roomId)) {
         userInfoMap.set(roomId, []);
-        languageToRoom[roomId] = userInfo.lang;
+        languageToRoom.set(roomId, userInfo.lang);
       }
 
       userInfo['id'] = socket.id; // eslint-disable-line
@@ -31,55 +31,55 @@ const socketService = (httpServer) => {
         'on-join',
         userInfoMap.get(roomId),
         `${userInfo.name} joined!`,
-        languageToRoom[roomId],
+        languageToRoom.get(roomId),
       );
     });
     // Language changed in room
-    socket.on('language-changed', ({ lang }) => {
-      const roomId = socketToRoom[socket.id];
-      languageToRoom[roomId] = lang;
+    socket.on('language-changed', ({ lang }: any) => {
+      const roomId = socketToRoom.get(socket.id);
+      languageToRoom.set(roomId, lang);
 
       io.to(roomId).emit('emit-language-changed', lang, languages[lang]);
     });
 
     // User changes a name
-    socket.on('name-change', (userInfo) => {
-      const roomId = socketToRoom[socket.id];
+    socket.on('name-change', (userInfo: any) => {
+      const roomId = socketToRoom.get(socket.id);
       const userList = userInfoMap.get(roomId);
-      const index = userList.findIndex((user) => user.id === socket.id);
+      const index = userList.findIndex((user: any) => user.id === socket.id);
       userList[index].name = userInfo.name;
 
       io.to(roomId).emit('name-changed', userInfoMap.get(roomId));
     });
 
     // When someone changes input data in room
-    socket.on('input-data', ({ data }) => {
-      const roomId = socketToRoom[socket.id];
+    socket.on('input-data', ({ data }: any) => {
+      const roomId = socketToRoom.get(socket.id);
       io.to(roomId).emit('emit-input-data', { inputData: data });
     });
 
     // When someone tries to execute code
     socket.on('execute-code-start', () => {
-      const roomId = socketToRoom[socket.id];
+      const roomId = socketToRoom.get(socket.id);
       io.to(roomId).emit('emit-execute-code-start');
     });
 
     // Emit the response of the execution to everyone in the room
-    socket.on('code-executed', (data) => {
-      const roomId = socketToRoom[socket.id];
+    socket.on('code-executed', (data: any) => {
+      const roomId = socketToRoom.get(socket.id);
       io.to(roomId).emit('emit-code-executed', data.data);
     });
 
     // When a user sends a message
-    socket.on('send-message', (messageData) => {
-      const roomId = socketToRoom[socket.id];
+    socket.on('send-message', (messageData: any) => {
+      const roomId = socketToRoom.get(socket.id);
       messageData.socketId = socket.id; // eslint-disable-line no-param-reassign
       socket.broadcast.to(roomId).emit('message', messageData);
     });
 
     // When question data is changed
-    socket.on('question-data-received', (questionData) => {
-      const roomId = socketToRoom[socket.id];
+    socket.on('question-data-received', (questionData: any) => {
+      const roomId = socketToRoom.get(socket.id);
       socket.broadcast
         .to(roomId)
         .emit('emit-question-data-received', questionData);
@@ -87,15 +87,15 @@ const socketService = (httpServer) => {
 
     // When a user gets disconnected
     socket.on('disconnect', () => {
-      const roomId = socketToRoom[socket.id];
+      const roomId = socketToRoom.get(socket.id);
       let userList = userInfoMap.get(roomId);
       socket.leave(roomId);
       let disconnectedUser;
       if (userList !== undefined) {
         disconnectedUser =
-          userList[userList?.findIndex((user) => user.id === socket.id)];
+          userList[userList?.findIndex((user: any) => user.id === socket.id)];
       }
-      userList = userList?.filter((u) => u.id !== socket.id);
+      userList = userList?.filter((u: any) => u.id !== socket.id);
       if (userList === undefined || !userList.length) {
         userInfoMap.delete(roomId);
       } else {
@@ -107,5 +107,3 @@ const socketService = (httpServer) => {
     });
   });
 };
-
-module.exports = socketService;

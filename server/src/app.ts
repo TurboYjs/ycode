@@ -6,7 +6,7 @@ import { StatController } from './controller/stat';
 import { QuestionController } from './controller/question';
 import ws from 'ws'
 import * as map from 'lib0/map'
-const socketService = require('./service/socket.js');
+import  {socketService} from './service/socket';
 // @ts-ignore
 // eslint-disable-next-line no-extend-native
 BigInt.prototype.toJSON = function () {
