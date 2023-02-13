@@ -67,7 +67,7 @@ jobs:
           script: |
             cd /www/project/runcodeserver/server
             pnpm install
-            pnpm build:docker
+#            pnpm build:docker
             pnpm build
             pnpm kill
             pnpm run deploy
