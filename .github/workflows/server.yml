@@ -18,24 +18,19 @@ jobs:
   build-server:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: ./server
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: inject env
         run: npm run inject:env DATABASE_URL=${{ secrets.DATABASE_URL }} REDIS_HOST=${{ secrets.REDIS_HOST }}  REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
-
       - name: Deploy to Server # 第二步，rsync推文件
         uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
         env:
@@ -46,7 +41,6 @@ jobs:
           SERVER_IP: ${{ secrets.SSH_HOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
           USERNAME: ${{ secrets.SSH_USER }} # 引用配置，服务器登录名
           SERVER_DESTINATION: /www/project/ycode/ # 部署到目标文件夹
-
       - name: Restart server # 第三步，重启服务
         uses: appleboy/ssh-action@v0.1.8
         with:
