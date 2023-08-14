@@ -1,5 +1,10 @@
 {
+  "version": "0.0.1",
   "scripts": {
-    "dev": "pnpm -r dev"
+    "dev": "pnpm -r dev",
+    "release": "bumpp package.json --commit --push --tag --all"
+  },
+  "devDependencies": {
+    "bumpp": "9.1.1"
   }
 }
