@@ -16,11 +16,18 @@ jobs:
         with:
           node-version: "18.x"
 
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 7
+          run_install: false
+
       - name: Install packages and build
         run: |
+          
           pushd ./website
-          yarn install
-          yarn build
+          pnpm install
+          pnpm build
           popd
 
       - name: Setup SSH
