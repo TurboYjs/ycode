@@ -3,7 +3,8 @@ on:
   push:
     tags:
       - '*'
-
+    paths:
+      - 'server/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
