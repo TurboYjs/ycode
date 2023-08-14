@@ -2,8 +2,6 @@ import 'reflect-metadata';
 import logger from './logger';
 import { createKoaServer } from 'routing-controllers';
 import { CodeController } from './controller/code';
-import { StatController } from './controller/stat';
-import { QuestionController } from './controller/question';
 import ws from 'ws'
 import * as map from 'lib0/map'
 import  {socketService} from './service/socket';
@@ -15,7 +13,7 @@ BigInt.prototype.toJSON = function () {
 
 const app = createKoaServer({
   cors: true,
-  controllers: [CodeController, StatController, QuestionController],
+  controllers: [CodeController],
 });
 
 app.on('error', (err: any) => {

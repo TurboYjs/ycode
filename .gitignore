@@ -1,16 +1,1 @@
-.build
-build
-web_modules
-node_modules
-/.idea/.gitignore
-/.idea/modules.xml
-/.idea/vcs.xml
-/.idea/ycode.iml
 /pnpm-lock.yaml
-/.env
-/src/tailwind.output.css
-/public/min/
-/public/min-maps/
-/.env.local
-/dist/
-/dist.zip
