@@ -1,43 +1,37 @@
-name: Release Web
-
+name: Release website
 on:
-  workflow_dispatch:
-  release:
-    types: [created]
-    paths:
-      - "client/**"
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./client
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
 
-      - name: Install modules
-        run: pnpm i
-
-      - name: build web
-        run: yarn predeploy
-        env:
-          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
-          ROOT_URL: ${{ secrets.ROOT_URL }}
-          SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL}}
-          facebookAppId: ${{ secrets.facebookAppId }}
-          facebookSecret: ${{ secrets.facebookSecret }}
-          googleWebClientId: ${{ secrets.googleWebClientId }}
-          googleAndroidClientId: ${{ secrets.googleAndroidClientId }}
-          googleIOSClientId: ${{ secrets.googleIOSClientId }}
-          googleSecret: ${{ secrets.googleSecret }}
-
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
         with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_PATH: ./client
+          node-version: "18.x"
+
+      - name: Install packages and build
+        run: |
+          pushd ./website
+          yarn install
+          yarn build
+          popd
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PUB_KEY }}" > ~/.ssh/id_rsa.pub
+          chmod 600 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa.pub
+          ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
+      - name: copy builds to server
+        run: |
+          rsync -vrm  website/* ${{ secrets.USER_IP }}:~/ycode/website/
+          ssh ${{ secrets.USER_IP }} "cd ~/ycode/server && pnpm run deploy"

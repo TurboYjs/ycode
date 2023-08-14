@@ -1,10 +1,8 @@
 name: Release server
 on:
-  workflow_dispatch:
-  release:
-    types: [created]
-    paths:
-      - "server/**"
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-and-deploy:

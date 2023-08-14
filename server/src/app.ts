@@ -28,7 +28,7 @@ process.on('uncaughtException', (err) => {
   console.log('uncaughtException', err);
 });
 
-const server = app.listen(39005, () => {
+const server = app.listen(3000, () => {
   logger.info('应用启动成功!');
 });
 
