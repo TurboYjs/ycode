@@ -9,7 +9,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./website
     steps:
       - uses: actions/checkout@master
 
@@ -25,12 +27,9 @@ jobs:
           run_install: false
 
       - name: Install packages and build
-        run: |
-          
-          pushd ./website
+        run: |          
           pnpm install
           pnpm build
-          popd
 
       - name: Setup SSH
         run: |
@@ -42,5 +41,4 @@ jobs:
           ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
       - name: copy builds to server
         run: |
-          rsync -vrm  website/* ${{ secrets.USER_IP }}:~/ycode/website/
-          ssh ${{ secrets.USER_IP }} "cd ~/ycode/server && pnpm run deploy"
+          rsync -vrm  ./* ${{ secrets.USER_IP }}:~/ycode/website/

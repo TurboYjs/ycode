@@ -8,7 +8,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./server
     steps:
       - uses: actions/checkout@master
 
@@ -24,11 +26,8 @@ jobs:
           run_install: false
       - name: Install packages and build
         run: |
-          pushd ./server
           pnpm install
           pnpm build
-          popd
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh/
@@ -39,5 +38,5 @@ jobs:
           ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
       - name: copy builds to server
         run: |
-          rsync -vrm  server/* ${{ secrets.USER_IP }}:~/ycode/server/
+          rsync -vrm  ./* ${{ secrets.USER_IP }}:~/ycode/server/
           ssh ${{ secrets.USER_IP }} "cd ~/ycode/server && pnpm run deploy"
