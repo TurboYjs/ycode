@@ -23,4 +23,4 @@ jobs:
       - name: copy builds to server
         run: |
           rsync -vrm   ./* ${{ secrets.USER_IP }}:/var/www/ycode/
-          ssh ${{ secrets.USER_IP }} "cd /var/www/ycode/ && pnpm install && pnpm build && cd /var/www/ycode/server && pnpm run deploy"
+          ssh ${{ secrets.USER_IP }} "cd /var/www/ycode/ && pnpm install && pnpm build && cd /var/www/ycode/server && pnpm run kill && pnpm run deploy"
