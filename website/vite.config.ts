@@ -16,7 +16,7 @@ export default defineConfig({
   //     ],
   //   },
   // },
-  base: '/interview/',
+  base: '/interview',
   server: {
     port: 8080
   },

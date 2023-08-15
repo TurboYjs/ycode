@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 ReactDOM.render(
     <React.StrictMode>
-        <Router basename={'/interview/'}>
+        <Router basename={'/interview'}>
             <Routes>
                 <Route path="/" element={<App />} />
             </Routes>
