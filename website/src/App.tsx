@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { PickFile } from '~components/PickFile';
+// import { PickFile } from '~components/PickFile';
 import yconfig from './yconfig';
 import Editor from './components/Editor';
 import Select from "~components/Select";
