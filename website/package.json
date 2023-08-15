@@ -9,7 +9,8 @@
     "preinstall": "npx only-allow pnpm",
     "postinstall": "copy-files-from-to",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "webrtc": "node node_modules/y-webrtc/bin/server.js"
   },
   "copyFiles": [
     {
