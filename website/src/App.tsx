@@ -50,9 +50,9 @@ function App({}: AppProps) {
     if (yconfig.initiator) {
         return (
            <div className="flex flex-col mt-10 items-center gap-5">
-               <PickFile onFile={setFileHandle} file={fileHandle}>
-                   <Editor onChange={write} />
-               </PickFile>
+               {/*<PickFile onFile={setFileHandle} file={fileHandle}>*/}
+               {/*    <Editor onChange={write} />*/}
+               {/*</PickFile>*/}
                <p className="text-xl font-bold" >
                    Select a lang to get start
                </p>

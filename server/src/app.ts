@@ -109,7 +109,7 @@ const onconnection = conn => {
     if (typeof message === 'string') {
       message = JSON.parse(message)
     }
-    if (message && message.type && !closed) {
+    if (message?.type && !closed) {
       switch (message.type) {
         case 'subscribe':
           // @ts-ignore
