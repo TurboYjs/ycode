@@ -7,7 +7,7 @@
     "build:wuli": "tsc && rimraf dist.zip && vite build --mode production --base '/gc/QKRYrX/' && zip -r dist.zip dist",
     "preview": "vite preview",
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "copy-files-from-to",
+    "monaco": "copy-files-from-to",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
