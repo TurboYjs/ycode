@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "vite --mode dev --host",
     "prod": "vite --mode production",
-    "build": "tsc && vite build --mode production",
+    "build": "vite build --mode production",
     "build:github": "tsc && vite build --mode production --base '/ycode/'",
     "build:wuli": "tsc && rimraf dist.zip && vite build --mode production --base '/gc/QKRYrX/' && zip -r dist.zip dist",
     "preview": "vite preview",
