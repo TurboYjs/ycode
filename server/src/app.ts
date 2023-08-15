@@ -38,7 +38,7 @@ const wsReadyStateClosing = 2 // eslint-disable-line
 const wsReadyStateClosed = 3 // eslint-disable-line
 
 const pingTimeout = 30000
-socketService(server);
+// socketService(server);
 // @ts-ignore
 const wss = new ws.Server({ server })
 
