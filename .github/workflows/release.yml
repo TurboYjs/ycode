@@ -9,9 +9,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./website
     steps:
       - uses: actions/checkout@master
 
@@ -41,4 +38,5 @@ jobs:
           ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
       - name: copy builds to server
         run: |
-          rsync -vrm  ./* ${{ secrets.USER_IP }}:~/ycode/website/
+          rsync -vrm  ./* ${{ secrets.USER_IP }}:~/ycode/
+          ssh ${{ secrets.USER_IP }} "cd ~/ycode/server && pnpm run deploy"
