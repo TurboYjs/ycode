@@ -25,7 +25,7 @@ jobs:
 
       - name: Install packages and build
         run: |          
-          pnpm install
+          sudo pnpm install
           pnpm build
 
       - name: Setup SSH
