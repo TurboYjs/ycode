@@ -37,5 +37,5 @@ jobs:
           ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
       - name: copy builds to server
         run: |
-          rsync -vrm  ./* ${{ secrets.USER_IP }}:~/ycode/
+          rsync -vrm  --exclude  'dist' ./* ${{ secrets.USER_IP }}:~/ycode/
           ssh ${{ secrets.USER_IP }} "cd ~/ycode/server && pnpm run deploy"
