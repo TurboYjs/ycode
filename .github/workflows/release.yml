@@ -12,21 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: "18.x"
-
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 7
-          run_install: false
-
-      - name: Install packages and build
-        run: |          
-          pnpm install
-          pnpm build
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh/
@@ -37,5 +22,5 @@ jobs:
           ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
       - name: copy builds to server
         run: |
-          rsync -vrm  --exclude  'node_modules' ./* ${{ secrets.USER_IP }}:~/ycode/
-          ssh ${{ secrets.USER_IP }} "cd ~/ycode/server && pnpm run deploy"
+          rsync -vrm   ./* ${{ secrets.USER_IP }}:~/ycode/
+          ssh ${{ secrets.USER_IP }} "pnpm install && pnpm build && cd ~/ycode/server && pnpm run deploy"
