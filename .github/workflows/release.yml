@@ -27,8 +27,6 @@ jobs:
         run: |          
           pnpm install
           pnpm build
-          pnpm -C website monaco
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh/
